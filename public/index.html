@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Downloader AI PRO</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* 🌌 background animasi */
+body {
+  margin:0;
+  overflow:hidden;
+  background: radial-gradient(circle at top, #020617, #020617, #0f172a);
+}
+
+/* floating smooth */
+#sticker {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) }
+  50% { transform: translateY(-15px) }
+  100% { transform: translateY(0px) }
+}
+
+/* canvas particle */
+#bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* glass */
+.card {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(56,189,248,0.2);
+}
+
+/* animasi */
+.fade { animation: fade .4s ease }
+@keyframes fade {
+  from {opacity:0; transform:translateY(10px)}
+  to {opacity:1; transform:translateY(0)}
+}
+
+/* progress bar */
+.progress {
+  height: 6px;
+  background: #0f172a;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #38bdf8, #22c55e);
+  transition: width 0.2s;
+}
+</style>
+</head>
+
+<body class="text-white flex items-center justify-center h-screen">
+
+
+<!-- 🌌 background image blur -->
+<div class="fixed inset-0 -z-10">
+  <img src="assets/bg.jpg" 
+  class="w-full h-full object-cover blur-2xl opacity-40">
+</div>
+<canvas id="bg"></canvas>
+
+<div class="card p-8 rounded-3xl w-[360px]">
+
+<h1 class="text-2xl font-bold text-center mb-2">🚀 Downloader AI</h1>
+<p class="text-center text-gray-400 text-sm mb-5">
+TikTok • Instagram • YouTube
+</p>
+
+<img src="assets/bgs.jpg" 
+class="rounded-xl mb-4 shadow-lg opacity-90">
+<!-- input + icon -->
+<div class="flex items-center gap-2 mb-4">
+  <span id="icon">🌐</span>
+  <input id="url" placeholder="Paste link..."
+  class="flex-1 p-3 rounded-xl bg-black/40 outline-none"
+  oninput="detectPlatform()"
+  onkeypress="if(event.key==='Enter') download()">
+</div>
+
+<button onclick="download()" 
+class="w-full bg-gradient-to-r from-blue-500 to-cyan-400 p-3 rounded-xl font-semibold">
+⚡ Download
+</button>
+
+<!-- progress -->
+<div id="progressBox" class="mt-4 hidden">
+  <div class="progress">
+    <div id="progressBar" class="progress-bar"></div>
+  </div>
+</div>
+
+<!-- preview -->
+<div id="preview" class="mt-4"></div>
+
+<!-- result -->
+<div id="result" class="mt-4"></div>
+
+</div>
+
+<img src="assets/stiker.png" id="stiker"
+class="fixed bottom-5 right-5 w-20 animate-bounce">
+
+<script src="js/app.js"></script>
+<script src="js/particle.js"></script>
+</body>
+</html>
